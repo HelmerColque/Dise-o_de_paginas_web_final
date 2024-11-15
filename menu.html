@@ -1,0 +1,233 @@
+<html>
+<head>
+  <style>
+
+    {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to top, coral, pink, lightpink);
+    }
+
+    
+    nav {
+      background-color: chocolate;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+   
+    .navbar-menu {
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+    }
+
+    
+    .navbar-item {
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .navbar-link {
+      color: purple;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    
+    .navbar-link:hover {
+      background-color: red;
+      color: black;
+    }
+
+  
+    .navbar-link:focus {
+      outline: 2px solid red;
+    }
+
+   
+    .submenu {
+      display: none;
+      list-style-type: none;
+      background-color: yellow;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      padding: 10px 0;
+      border-radius: 5px;
+    }
+
+    .submenu-item {
+      padding: 8px 15px;
+    }
+
+    .submenu-item a {
+      color: black;
+      text-decoration: none;
+      font-size: 16px;
+      display: block;
+    }
+
+    .submenu-item a:hover {
+      background-color: red;
+      color: lavanda;
+    }
+
+    
+    .navbar-item.active .submenu {
+      display: block;
+    }
+
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      background-color: green;
+      height: 3px;
+      width: 25px;
+      margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    
+    @media (max-width: 768px) {
+      .navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+
+      .navbar-item {
+        margin: 10px 0;
+      }
+
+      .navbar-link {
+        font-size: 16px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .navbar-menu.active {
+        display: flex;
+      }
+
+      .submenu {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="navbar-container">
+      
+      <div class="logo">
+        <a href="#" class="navbar-link">I.TE.C.</a>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <ul class="navbar-menu" id="navbar-menu">
+        <li class="navbar-item">
+          <a href="#" class="navbar-link" id="inicio">Inicio</a>
+        </li>
+        <li class="navbar-item" id="carreras-item">
+          <a href="#" class="navbar-link">Carreras</a>
+          <ul class="submenu">
+            <li class="submenu-item"><a href="#">Carrera de Contabilidad</a></li>
+            <li class="submenu-item"><a href="#">Carrera de Secretariado</a></li>
+            <li class="submenu-item"><a href="#">Carrera de Sistemas Informáticos</a></li>
+          </ul>
+        </li>
+        <li class="navbar-item" id="docentes-item">
+          <a href="#" class="navbar-link">Docentes</a>
+          <ul class="submenu">
+            <li class="submenu-item"><a href="#">Docentes de Contabilidad</a></li>
+            <li class="submenu-item"><a href="#">Docentes de Secretariado</a></li>
+            <li class="submenu-item"><a href="#">Docentes de Sistemas Informáticos</a></li>
+          </ul>
+        </li>
+        <li class="navbar-item" id="sitios-item">
+          <a href="#" class="navbar-link">Sitios</a>
+          <ul class="submenu">
+            <li class="submenu-item"><a href="#">Facebook</a></li>
+            <li class="submenu-item"><a href="#">Instagram</a></li>
+            <li class="submenu-item"><a href="#">Tik Tok</a></li>
+          </ul>
+        </li>
+        <li class="navbar-item" id="amigos-item">
+          <a href="#" class="navbar-link">Amigos</a>
+          <ul class="submenu">
+            <li class="submenu-item"><a href="#">Juan Pérez</a></li>
+            <li class="submenu-item"><a href="#">Ana Gómez</a></li>
+            <li class="submenu-item"><a href="#">Carlos López</a></li>
+            <li class="submenu-item"><a href="#">Sofia Fernández</a></li>
+            <li class="submenu-item"><a href="#">Pedro Ruiz</a></li>
+            <li class="submenu-item"><a href="#">Marta Sánchez</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    document.querySelectorAll('.navbar-item').forEach(item => {
+      item.addEventListener('click', function(event) {
+        if (event.target.tagName === 'A') {
+         
+          if (event.target.id === "inicio") {
+            window.location.reload();
+            return;
+          }
+          
+          this.classList.toggle('active');
+          event.stopPropagation();  
+        }
+      });
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navbarMenu = document.getElementById('navbar-menu');
+
+    hamburger.addEventListener('click', () => {
+      navbarMenu.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
